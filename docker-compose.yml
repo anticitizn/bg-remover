@@ -3,7 +3,7 @@ services:
     build: ./frontend/nginx
     container_name: dimobg_frontend
     ports:
-      - "4024:4024"
+      - "80:4024"
     volumes:
       - ./frontend:/usr/share/nginx/html
       - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
