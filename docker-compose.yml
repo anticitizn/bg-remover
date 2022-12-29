@@ -1,0 +1,17 @@
+services:
+  frontend:
+    build: ./frontend/nginx
+    container_name: dimobg_frontend
+    ports:
+      - "4024:4024"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend/nginx/mime.types:/etc/nginx/mime.types
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    container_name: dimobg_backend
+    expose:
+      - 5000
