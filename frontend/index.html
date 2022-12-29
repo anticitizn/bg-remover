@@ -1,5 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dimo Background Remover</title>
+</head>
+
+<body>
+
 <form>
     <label for="files">Select files:</label>
-    <input type="file" id="files" name="files" multiple>
-</form> 
+    <input type="file" id="file" onchange="upload()">
+</form>
+<img src="" id="transparentImage">
 
+<script>
+    var backendUrl = "http://localhost:5000"
+    var url = ""
+
+    function upload(file) {
+        inputElement =  document.getElementById("file")
+        file = inputElement.files.item(0)
+
+        var formData = new FormData;
+        formData.append('file', file);
+
+        var req = new XMLHttpRequest();
+        req.addEventListener('load', uploadCompleteHandler, false);
+        req.responseType = "blob";
+        req.open('POST', backendUrl, true);
+        req.send(formData);
+    }
+
+    function uploadCompleteHandler(event) {
+        blob = event.target.response
+        var urlCreator = window.URL || window.webkitURL;
+        url = urlCreator.createObjectURL(blob);
+        imageElement = document.getElementById("transparentImage")
+        imageElement.src = url
+    }
+  
+</script>
+
+</body>
+</html>
