@@ -22,6 +22,7 @@
 
         var formData = new FormData;
         formData.append('file', file);
+        formData.append('a', true);
 
         var req = new XMLHttpRequest();
         req.addEventListener('load', uploadCompleteHandler, false);
