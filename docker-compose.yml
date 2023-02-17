@@ -13,5 +13,4 @@ services:
   backend:
     build: ./backend
     container_name: dimobg_backend
-    ports:
-      - "5000:5000"
+    network_mode: "host"
